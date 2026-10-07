@@ -31,8 +31,9 @@ For each module, I document:
 
 This repository is updated progressively as each module is completed.
 
-- **0 / 28 CPTS modules completed**
-- Currently in progress: **02 - Getting Started** (10/16 lessons documented)
+- **1 / 28 CPTS modules completed**
+- ✅ **02 - Getting Started** (23/23 lessons documented)
+- Next up: **03 - Nmap**
 
 ## Platform
 
