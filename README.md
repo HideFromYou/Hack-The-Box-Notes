@@ -31,11 +31,11 @@ For each module, I document:
 
 This repository is updated progressively as each module's notes are fully documented. A ✅ means that module's notes are complete in this repo (not just finished on the HTB dashboard).
 
-**1 / 28 CPTS modules documented**
+**2 / 28 CPTS modules documented**
 
 | # | Module | Status |
 |---|---|---|
-| 01 | Penetration Testing Process | ⬜ |
+| 01 | Penetration Testing Process | ✅ |
 | 02 | Getting Started | ✅ |
 | 03 | Network Enumeration with Nmap | ⬜ |
 | 04 | Footprinting | ⬜ |
