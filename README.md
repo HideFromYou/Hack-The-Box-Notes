@@ -31,14 +31,14 @@ For each module, I document:
 
 This repository is updated progressively as each module's notes are fully documented. A ✅ means that module's notes are complete in this repo (not just finished on the HTB dashboard).
 
-**3 / 28 CPTS modules documented**
+**3 / 28 CPTS modules documented** (04 - Footprinting in progress: 9/21 sections)
 
 | # | Module | Status |
 |---|---|---|
 | 01 | Penetration Testing Process | ✅ |
 | 02 | Getting Started | ✅ |
 | 03 | Network Enumeration with Nmap | ✅ |
-| 04 | Footprinting | ⬜ |
+| 04 | Footprinting | 🟡 |
 | 05 | Information Gathering - Web Edition | ⬜ |
 | 06 | Vulnerability Assessment | ⬜ |
 | 07 | File Transfers | ⬜ |
@@ -64,7 +64,7 @@ This repository is updated progressively as each module's notes are fully docume
 | 27 | Documentation & Reporting | ⬜ |
 | 28 | Attacking Enterprise Networks | ⬜ |
 
-Next up: **04 - Footprinting**
+Currently working through: **04 - Footprinting** (9/21 sections done)
 
 ## Platform
 
