@@ -13,7 +13,7 @@ The goal is not only to complete the content, but to understand how vulnerabilit
 | Section | Description | Status |
 |---|---|---|
 | [CPTS Job Role Path](CPTS-Job-Role-Path) | Hack The Box Academy CPTS path notes (28 modules) | 🟡 In progress |
-| [CTF & Labs](CTF-Labs) | Machine write-ups and lab walkthroughs | ⏳ Not started |
+| [CTF & Labs](CTF-Labs) | Machine write-ups and lab walkthroughs | 🟡 In progress (1 machine: Oopsie) |
 
 ## Approach
 
