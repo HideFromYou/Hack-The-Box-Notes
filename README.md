@@ -31,7 +31,7 @@ For each module, I document:
 
 This repository is updated progressively as each module's notes are fully documented. A ✅ means that module's notes are complete in this repo (not just finished on the HTB dashboard).
 
-**3 / 28 CPTS modules documented** (04 - Footprinting in progress: 9/21 sections)
+**3 / 28 CPTS modules documented** (04 - Footprinting in progress: 10/21 sections)
 
 | # | Module | Status |
 |---|---|---|
@@ -64,7 +64,7 @@ This repository is updated progressively as each module's notes are fully docume
 | 27 | Documentation & Reporting | ⬜ |
 | 28 | Attacking Enterprise Networks | ⬜ |
 
-Currently working through: **04 - Footprinting** (9/21 sections done)
+Currently working through: **04 - Footprinting** (10/21 sections done)
 
 ## Platform
 
