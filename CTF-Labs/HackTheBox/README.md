@@ -18,3 +18,5 @@ Each machine may include:
 
 | Machine | OS | Difficulty | Key Techniques |
 |---------|----|------------|----------------|
+| [Oopsie](Machines/Starting-Point/Oopsie) | Linux | Easy | IDOR (cookie), file upload RCE, password reuse, SUID PATH hijacking |
+| [Cap](Machines/Starting-Point/Cap) | Linux | Easy | IDOR (path parameter), pcap credential disclosure, password reuse, Linux capabilities (`cap_setuid`) abuse |
