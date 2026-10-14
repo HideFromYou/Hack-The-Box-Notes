@@ -2,7 +2,7 @@
 
 ## Overview
 
-Notes from the Hack The Box Academy **Footprinting** module. This module is a checkpoint — **sections 1-11 of 21 are documented so far**. Completed sections cover the enumeration mindset and methodology, passive OSINT techniques (domain information, cloud resources, staff), and active service footprinting for FTP, SMB, NFS, DNS, SMTP, and IMAP/POP3. Sections 12-21 (additional services covered by the module) are still pending.
+Notes from the Hack The Box Academy **Footprinting** module. This module is a checkpoint — **sections 1-12 of 21 are documented so far**. Completed sections cover the enumeration mindset and methodology, passive OSINT techniques (domain information, cloud resources, staff), and active service footprinting for FTP, SMB, NFS, DNS, SMTP, IMAP/POP3, and SNMP. Sections 13-21 (additional services covered by the module) are still pending.
 
 ## Lessons
 
@@ -19,7 +19,8 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 | 09 | DNS | ✅ |
 | 10 | SMTP | ✅ |
 | 11 | IMAP / POP3 | ✅ |
-| 12-21 | Remaining Footprinting sections | ⬜ pending |
+| 12 | SNMP | ✅ |
+| 13-21 | Remaining Footprinting sections | ⬜ pending |
 
 ## Skills Practiced
 
@@ -34,6 +35,7 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - DNS footprinting via SOA/ANY queries, zone transfer (AXFR) attempts, and subdomain brute-forcing
 - SMTP mail-flow mapping (MUA/MSA/MTA/MDA), manual protocol interaction, `VRFY` user enumeration, and open relay identification
 - IMAP/POP3 footprinting via Nmap TLS cert extraction, authenticated interaction via `curl`/`openssl s_client`, and credential reuse testing across services
+- SNMP footprinting via community strings, `snmpwalk` OID queries, and `onesixtyone` community string brute-forcing
 
 ## Tools Used
 
@@ -47,6 +49,7 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - telnet / nc (manual SMTP/IMAP/POP3 interaction)
 - smtp-user-enum
 - openssl s_client
+- snmpwalk / onesixtyone / braa
 
 ## Key Takeaways
 
@@ -58,4 +61,5 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - SMTP's `VRFY`/open-relay weaknesses mirror the same theme as FTP/SMB/NFS — protocol-level trust (in a claimed username, in a claimed relay network) left unchecked becomes a direct enumeration or abuse path.
 - TLS certificates on mail services (IMAP/POP3) are an easy, pre-auth source of org name/FQDN/employee email — footprinting value hiding in plain sight in the handshake.
 - Credential reuse across services (a username/password found via one protocol working on a completely different one) has been the single most recurring theme across this module's sections so far.
-- This checkpoint covers only Layer 3 (Accessible Services) territory for FTP/SMB/NFS/DNS/SMTP/IMAP/POP3 — the remaining 10 sections of this module cover additional services and are not yet documented.
+- SNMP's community string is the same "shared secret pretending to be authentication" pattern seen in SMTP/mail services — v1/v2c has essentially no real access control, just an often-default (`public`) plaintext string.
+- This checkpoint covers only Layer 3 (Accessible Services) territory for FTP/SMB/NFS/DNS/SMTP/IMAP/POP3/SNMP — the remaining 9 sections of this module cover additional services and are not yet documented.
