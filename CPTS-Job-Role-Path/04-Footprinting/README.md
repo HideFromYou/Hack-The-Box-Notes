@@ -2,7 +2,7 @@
 
 ## Overview
 
-Notes from the Hack The Box Academy **Footprinting** module. This module is a checkpoint — **sections 1-12 of 21 are documented so far**. Completed sections cover the enumeration mindset and methodology, passive OSINT techniques (domain information, cloud resources, staff), and active service footprinting for FTP, SMB, NFS, DNS, SMTP, IMAP/POP3, and SNMP. Sections 13-21 (additional services covered by the module) are still pending.
+Notes from the Hack The Box Academy **Footprinting** module. This module is a checkpoint — **sections 1-13 of 21 are documented so far**. Completed sections cover the enumeration mindset and methodology, passive OSINT techniques (domain information, cloud resources, staff), and active service footprinting for FTP, SMB, NFS, DNS, SMTP, IMAP/POP3, SNMP, and MySQL. Sections 14-21 (additional services covered by the module) are still pending.
 
 ## Lessons
 
@@ -20,7 +20,8 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 | 10 | SMTP | ✅ |
 | 11 | IMAP / POP3 | ✅ |
 | 12 | SNMP | ✅ |
-| 13-21 | Remaining Footprinting sections | ⬜ pending |
+| 13 | MySQL | ✅ |
+| 14-21 | Remaining Footprinting sections | ⬜ pending |
 
 ## Skills Practiced
 
@@ -36,6 +37,7 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - SMTP mail-flow mapping (MUA/MSA/MTA/MDA), manual protocol interaction, `VRFY` user enumeration, and open relay identification
 - IMAP/POP3 footprinting via Nmap TLS cert extraction, authenticated interaction via `curl`/`openssl s_client`, and credential reuse testing across services
 - SNMP footprinting via community strings, `snmpwalk` OID queries, and `onesixtyone` community string brute-forcing
+- MySQL footprinting via Nmap `mysql*` NSE scripts, manual verification of NSE false positives, and direct `mysql` CLI database/table enumeration
 
 ## Tools Used
 
@@ -50,6 +52,7 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - smtp-user-enum
 - openssl s_client
 - snmpwalk / onesixtyone / braa
+- mysql client
 
 ## Key Takeaways
 
@@ -62,4 +65,5 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - TLS certificates on mail services (IMAP/POP3) are an easy, pre-auth source of org name/FQDN/employee email — footprinting value hiding in plain sight in the handshake.
 - Credential reuse across services (a username/password found via one protocol working on a completely different one) has been the single most recurring theme across this module's sections so far.
 - SNMP's community string is the same "shared secret pretending to be authentication" pattern seen in SMTP/mail services — v1/v2c has essentially no real access control, just an often-default (`public`) plaintext string.
-- This checkpoint covers only Layer 3 (Accessible Services) territory for FTP/SMB/NFS/DNS/SMTP/IMAP/POP3/SNMP — the remaining 9 sections of this module cover additional services and are not yet documented.
+- Automated NSE findings (MySQL's empty-password false positive) are a lead to verify manually, never a fact to trust outright — a theme that's now shown up with SMTP (VRFY false positives) and MySQL both.
+- This checkpoint covers only Layer 3 (Accessible Services) territory for FTP/SMB/NFS/DNS/SMTP/IMAP/POP3/SNMP/MySQL — the remaining 8 sections of this module cover additional services and are not yet documented.
