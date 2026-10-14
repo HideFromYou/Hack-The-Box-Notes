@@ -2,7 +2,7 @@
 
 ## Overview
 
-Notes from the Hack The Box Academy **Footprinting** module. This module is a checkpoint — **sections 1-14 of 21 are documented so far**. Completed sections cover the enumeration mindset and methodology, passive OSINT techniques (domain information, cloud resources, staff), and active service footprinting for FTP, SMB, NFS, DNS, SMTP, IMAP/POP3, SNMP, MySQL, and MSSQL. Sections 15-21 (additional services covered by the module) are still pending.
+Notes from the Hack The Box Academy **Footprinting** module. This module is a checkpoint — **sections 1-15 of 21 are documented so far**. Completed sections cover the enumeration mindset and methodology, passive OSINT techniques (domain information, cloud resources, staff), and active service footprinting for FTP, SMB, NFS, DNS, SMTP, IMAP/POP3, SNMP, MySQL, MSSQL, and Oracle TNS. Sections 16-21 (additional services covered by the module) are still pending.
 
 ## Lessons
 
@@ -22,7 +22,8 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 | 12 | SNMP | ✅ |
 | 13 | MySQL | ✅ |
 | 14 | MSSQL | ✅ |
-| 15-21 | Remaining Footprinting sections | ⬜ pending |
+| 15 | Oracle TNS | ✅ |
+| 16-21 | Remaining Footprinting sections | ⬜ pending |
 
 ## Skills Practiced
 
@@ -40,6 +41,7 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - SNMP footprinting via community strings, `snmpwalk` OID queries, and `onesixtyone` community string brute-forcing
 - MySQL footprinting via Nmap `mysql*` NSE scripts, manual verification of NSE false positives, and direct `mysql` CLI database/table enumeration
 - MSSQL footprinting via Nmap `ms-sql-*` NSE scripts, Metasploit's `mssql_ping`, and authenticated T-SQL interaction via Impacket's `mssqlclient.py`
+- Oracle TNS footprinting via Nmap SID brute-forcing, ODAT credential brute-forcing, and authenticated `sqlplus` interaction including `sysdba` privilege escalation and file upload
 
 ## Tools Used
 
@@ -56,6 +58,7 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - snmpwalk / onesixtyone / braa
 - mysql client
 - Nmap ms-sql-* NSE scripts / Metasploit mssql_ping / Impacket mssqlclient.py
+- ODAT / sqlplus
 
 ## Key Takeaways
 
@@ -69,5 +72,6 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - Credential reuse across services (a username/password found via one protocol working on a completely different one) has been the single most recurring theme across this module's sections so far.
 - SNMP's community string is the same "shared secret pretending to be authentication" pattern seen in SMTP/mail services — v1/v2c has essentially no real access control, just an often-default (`public`) plaintext string.
 - Automated NSE findings (MySQL's empty-password false positive) are a lead to verify manually, never a fact to trust outright — a theme that's now shown up with SMTP (VRFY false positives) and MySQL both.
-- Default/well-known credentials left enabled (`sa` on MSSQL, `public`/`private` SNMP community strings, MySQL `root`) is the single most recurring root cause across this module's database/management-protocol sections.
-- This checkpoint covers only Layer 3 (Accessible Services) territory for FTP/SMB/NFS/DNS/SMTP/IMAP/POP3/SNMP/MySQL/MSSQL — the remaining 7 sections of this module cover additional services and are not yet documented.
+- Default/well-known credentials left enabled (`sa` on MSSQL, `public`/`private` SNMP community strings, MySQL `root`, Oracle's `scott:tiger`/`dbsnmp:dbsnmp`) is the single most recurring root cause across this module's database/management-protocol sections.
+- Low-privilege DB access is rarely the end state — re-authenticating with an elevated role (Oracle's `as sysdba`) when the account happens to be authorized is a simple, direct escalation path worth trying immediately after any successful DB login.
+- This checkpoint covers only Layer 3 (Accessible Services) territory for FTP/SMB/NFS/DNS/SMTP/IMAP/POP3/SNMP/MySQL/MSSQL/Oracle TNS — the remaining 6 sections of this module cover additional services and are not yet documented.
