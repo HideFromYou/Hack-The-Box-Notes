@@ -48,6 +48,8 @@ Notes from the Hack The Box Academy **Footprinting** module. **All 21 sections a
 - MSSQL footprinting via Nmap `ms-sql-*` NSE scripts, Metasploit's `mssql_ping`, and authenticated T-SQL interaction via Impacket's `mssqlclient.py`
 - Oracle TNS footprinting via Nmap SID brute-forcing, ODAT credential brute-forcing, and authenticated `sqlplus` interaction including `sysdba` access
 - IPMI footprinting via Nmap's `ipmi-version` NSE script and Metasploit IPMI scanners; RAKP hash retrieval and offline cracking with Hashcat mode 7300
+- Linux remote-management footprinting: SSH service identification, Rsync daemon/module enumeration, and legacy R-services (rsh, rlogin, rexec, rcp)
+- Windows remote-management footprinting: RDP, WinRM, and WMI concepts, service discovery, ports, and access-control considerations
 - Chained enumeration across SNMP, IMAPS, SSH, Linux user artifacts, and MySQL in the Hard lab
 - Manual IMAP interaction over TLS using `openssl s_client`, mailbox/folder enumeration, and retrieval of an SSH key from a message
 - Linux host enumeration through `.bash_history` and `.mysql_history` to identify previous user activity and database usage
@@ -70,6 +72,8 @@ Notes from the Hack The Box Academy **Footprinting** module. **All 21 sections a
 - Nmap ms-sql-* NSE scripts / Metasploit mssql_ping / Impacket mssqlclient.py
 - ODAT / sqlplus
 - Nmap `ipmi-version` NSE script
+- SSH client / Rsync / Netcat
+- Nmap RDP and WinRM service checks / FreeRDP / Evil-WinRM
 - Metasploit `auxiliary/scanner/ipmi/ipmi_version` and `auxiliary/scanner/ipmi/ipmi_dumphashes`
 - Hashcat (mode 7300 — IPMI2 RAKP HMAC-SHA1)
 - SSH client / ssh-keygen
