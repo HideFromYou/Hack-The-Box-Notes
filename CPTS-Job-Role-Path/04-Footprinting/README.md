@@ -2,7 +2,7 @@
 
 ## Overview
 
-Notes from the Hack The Box Academy **Footprinting** module. This module is a checkpoint — **sections 1-16 of 21 are documented so far**. Completed sections cover the enumeration mindset and methodology, passive OSINT techniques (domain information, cloud resources, staff), and active service footprinting for FTP, SMB, NFS, DNS, SMTP, IMAP/POP3, SNMP, MySQL, MSSQL, Oracle TNS, and IPMI. Sections 17-21 remain pending.
+Notes from the Hack The Box Academy **Footprinting** module. **All 21 sections are completed.** The module covered enumeration principles and methodology, passive OSINT, infrastructure- and host-based enumeration, manual interaction with common network services, and practical Easy, Medium, and Hard labs.
 
 ## Lessons
 
@@ -24,7 +24,7 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 | 14 | MSSQL | ✅ |
 | 15 | Oracle TNS | ✅ |
 | 16 | IPMI | ✅ |
-| 17-21 | Remaining Footprinting sections | ⬜ pending |
+| 17-21 | Practical labs and module conclusion | ✅ |
 
 ## Skills Practiced
 
@@ -44,6 +44,10 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - MSSQL footprinting via Nmap `ms-sql-*` NSE scripts, Metasploit's `mssql_ping`, and authenticated T-SQL interaction via Impacket's `mssqlclient.py`
 - Oracle TNS footprinting via Nmap SID brute-forcing, ODAT credential brute-forcing, and authenticated `sqlplus` interaction including `sysdba` access
 - IPMI footprinting via Nmap's `ipmi-version` NSE script and Metasploit IPMI scanners; RAKP hash retrieval and offline cracking with Hashcat mode 7300
+- Chained enumeration across SNMP, IMAPS, SSH, Linux user artifacts, and MySQL in the Hard lab
+- Manual IMAP interaction over TLS using `openssl s_client`, mailbox/folder enumeration, and retrieval of an SSH key from a message
+- Linux host enumeration through `.bash_history` and `.mysql_history` to identify previous user activity and database usage
+- MySQL database, table, and column enumeration, followed by a targeted SQL query to identify a specific account record
 
 ## Tools Used
 
@@ -64,6 +68,31 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - Nmap `ipmi-version` NSE script
 - Metasploit `auxiliary/scanner/ipmi/ipmi_version` and `auxiliary/scanner/ipmi/ipmi_dumphashes`
 - Hashcat (mode 7300 — IPMI2 RAKP HMAC-SHA1)
+- SSH client / ssh-keygen
+
+## Practical Lab Notes
+
+### Easy
+
+Completed the Easy practical lab and applied the module's service-enumeration workflow to identify and investigate exposed services.
+
+### Medium
+
+Completed the Medium practical lab. The exercise reinforced enumeration of NFS and SMB, inspection of exposed files, credential discovery, and testing whether discovered credentials were reused across services. Database access and SQL queries were used to locate the target account record.
+
+### Hard
+
+Completed the Hard practical lab against a Linux host:
+
+1. TCP and UDP Nmap scans identified SSH, POP3, IMAP/IMAPS, POP3S, and SNMP.
+2. `onesixtyone` identified an SNMP community string; `snmpwalk` exposed host information and credentials for a local user.
+3. Password-based SSH authentication was not accepted, so the investigation continued through IMAPS.
+4. `openssl s_client` established a TLS connection to IMAPS. Manual IMAP commands enumerated mail folders and retrieved a message containing an SSH private key.
+5. The key was saved with restrictive permissions (`chmod 600`) and used for SSH authentication.
+6. After obtaining a shell, `.bash_history` and `.mysql_history` revealed prior MySQL activity and the database/table names.
+7. The MySQL client was used to inspect the `users` database and query the target account.
+
+**Security note:** Lab credentials, recovered passwords, private keys, flags, and target-specific secrets are intentionally excluded from this repository. Keep them only in the authorized lab environment.
 
 ## Key Takeaways
 
@@ -74,10 +103,16 @@ Notes from the Hack The Box Academy **Footprinting** module. This module is a ch
 - Cross-checking results across multiple tools (e.g. SMB's `smbclient`/`rpcclient`/enum4linux-ng/CrackMapExec) consistently surfaces information that any single tool missed.
 - SMTP's `VRFY`/open-relay weaknesses mirror the same theme as FTP/SMB/NFS — protocol-level trust (in a claimed username, in a claimed relay network) left unchecked becomes a direct enumeration or abuse path.
 - TLS certificates on mail services (IMAP/POP3) are an easy, pre-auth source of org name/FQDN/employee email — footprinting value hiding in plain sight in the handshake.
-- Credential reuse across services (a username/password found via one protocol working on a completely different one) has been the single most recurring theme across this module's sections so far.
+- Credential reuse across services (a username/password found via one protocol working on a completely different one) has been the single most recurring theme across this module.
 - SNMP's community string is the same "shared secret pretending to be authentication" pattern seen in SMTP/mail services — v1/v2c has essentially no real access control, just an often-default (`public`) plaintext string.
 - Automated NSE findings (MySQL's empty-password false positive) are a lead to verify manually, never a fact to trust outright — a theme that's now shown up with SMTP (VRFY false positives) and MySQL both.
 - Default/well-known credentials left enabled (`sa` on MSSQL, `public`/`private` SNMP community strings, MySQL `root`, Oracle's `scott:tiger`/`dbsnmp:dbsnmp`) is the single most recurring root cause across this module's database/management-protocol sections.
 - Low-privilege DB access is rarely the end state — re-authenticating with an elevated role (Oracle's `as sysdba`) when the account happens to be authorized is a direct escalation path worth checking after a successful DB login.
 - IPMI expands footprinting beyond application and database services into hardware management. UDP/623 exposure can reveal BMC interfaces; IPMI 2.0 RAKP may expose password-derived authentication data that can be cracked offline. A cracked BMC credential can have significant impact because BMC access can enable remote hardware-level management.
-- This checkpoint covers the first 16 sections. Sections 17-21 remain to be completed and documented.
+- A low-privileged shell can expose valuable operational artifacts: shell history, application history, local mail stores, configuration files, and SSH material.
+- A failed authentication method on one service does not invalidate the credential elsewhere. Pivot to other exposed services and test hypotheses based on evidence.
+- The strongest practical lesson is to connect findings across services: SNMP can expose credentials, mail can expose a key, SSH can expose user history, and user history can reveal a path to a database.
+
+---
+
+**Status: Footprinting completed — 21/21.**
