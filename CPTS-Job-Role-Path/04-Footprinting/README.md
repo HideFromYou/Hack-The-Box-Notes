@@ -24,7 +24,11 @@ Notes from the Hack The Box Academy **Footprinting** module. **All 21 sections a
 | 14 | MSSQL | ✅ |
 | 15 | Oracle TNS | ✅ |
 | 16 | IPMI | ✅ |
-| 17-21 | Practical labs and module conclusion | ✅ |
+| 17 | Linux Remote Management Protocols — SSH, Rsync, R-Services | ✅ |
+| 18 | Windows Remote Management Protocols — RDP, WinRM, WMI | ✅ |
+| 19 | Footprinting Lab — Easy | ✅ |
+| 20 | Footprinting Lab — Medium | ✅ |
+| 21 | Footprinting Lab — Hard | ✅ |
 
 ## Skills Practiced
 
