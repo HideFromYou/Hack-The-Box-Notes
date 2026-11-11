@@ -2,7 +2,7 @@
 
 ## Status
 
-<badge>Completed</badge>
+**Status: Completed**
 
 ## Lab notes
 
